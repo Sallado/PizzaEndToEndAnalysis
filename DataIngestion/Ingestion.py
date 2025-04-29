@@ -3,7 +3,7 @@ import pandas as pd
 from sqlalchemy import create_engine
 
 class PostgresDB:
-    def _init_(self, db_name, user, password, host="localhost", port="5432"):
+    def __init__(self, db_name, user, password, host="localhost", port="5432"):
         self.db_name = db_name
         self.user = user
         self.password = password
@@ -119,7 +119,7 @@ class PostgresDB:
             print("Tables created successfully!")
         except Exception as e:
             print(f"Error while creating tables: {e}")
-            self.connection.rollback()
+            # self.connection.rollback()
     
     def load_csv_to_db(self, csv_file, table_name):
         """Load CSV data into PostgreSQL table."""
@@ -143,9 +143,9 @@ class PostgresDB:
         print("Connection closed!")
 
 # Example usage
-if _name_ == "_main_":
+if __name__ == "__main__":
     # Replace with your PostgreSQL credentials
-    db = PostgresDB(db_name="your_db_name", user="your_user", password="your_password")
+    db = PostgresDB(db_name="Pizza", user="postgres", password="Baloo079$")
     
     # Step 1: Connect to the database
     db.connect()
@@ -153,15 +153,16 @@ if _name_ == "_main_":
     # Step 2: Create necessary tables
     db.create_tables()
 
-    # Step 3: Load CSV files into the database
-    db.load_csv_to_db("pizza_type.csv", "pizza_types")
-    db.load_csv_to_db("pizzas.csv", "pizzas")
-    db.load_csv_to_db("orders_2023.csv", "orders_2023")
-    db.load_csv_to_db("order_details_2023.csv", "order_details_2023")
-    db.load_csv_to_db("orders_2024.csv", "orders_2024")
-    db.load_csv_to_db("order_details_2024.csv", "order_details_2024")
-    db.load_csv_to_db("orders_2025.csv", "orders_2025")
-    db.load_csv_to_db("order_details_2025.csv", "order_details_2025")
+    # Step 3: Load CSV files into the database  C:\Users\ABDULSALAM\OneDrive\Documents\pythonpractice\Analytical Engineering\Data\order_details_2024.csv
+   
     
+    db.load_csv_to_db(r"C:\Users\ABDULSALAM\OneDrive\Documents\pythonpractice\Analytical Engineering\Data\pizza_type.csv", "pizza_type")
+    db.load_csv_to_db(r"C:\Users\ABDULSALAM\OneDrive\Documents\pythonpractice\Analytical Engineering\Data\pizzas.csv", "pizza")
+    db.load_csv_to_db(r"C:\Users\ABDULSALAM\OneDrive\Documents\pythonpractice\Analytical Engineering\Data\orders_2023.csv", "orders_2023")
+    db.load_csv_to_db(r"C:\Users\ABDULSALAM\OneDrive\Documents\pythonpractice\Analytical Engineering\Data\order_details_2023.csv", "order_details_2023")
+    db.load_csv_to_db(r"C:\Users\ABDULSALAM\OneDrive\Documents\pythonpractice\Analytical Engineering\Data\orders_2024.csv", "orders_2024")
+    db.load_csv_to_db(r"C:\Users\ABDULSALAM\OneDrive\Documents\pythonpractice\Analytical Engineering\Data\order_details_2024.csv", "order_details_2024")
+    db.load_csv_to_db(r"C:\Users\ABDULSALAM\OneDrive\Documents\pythonpractice\Analytical Engineering\Data\orders_2025.csv", "orders_2025")
+    db.load_csv_to_db(r"C:\Users\ABDULSALAM\OneDrive\Documents\pythonpractice\Analytical Engineering\Data\order_details_2025.csv", "order_details_2025")
     # Step 4: Close the connection
     db.close_connection()
